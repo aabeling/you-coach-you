@@ -12,4 +12,10 @@ export class SpeakerExampleComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * This function starts some text-to-speech output
+   */
+  saySomething() {
+    console.log("say something");
+  }
 }
