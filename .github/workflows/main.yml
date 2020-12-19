@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
 #  push:
@@ -24,10 +24,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        
-      - uses: hrueger/setup-nativescript@v1.1.0
-        with:
-          nativescript-version: '6.5.0'
+
+      - name: check sdkmanager
+        run: sdkmanager --list
           
-      - name: show tns info
-        run: tns info      
+#      - uses: hrueger/setup-nativescript@v1.1.0
+#        with:
+          nativescript-version: '6.5.0'
+#
+#      - name: show tns info
+#        run: tns info
