@@ -17,21 +17,20 @@ export class SpeakerExampleComponent implements OnInit {
    * This function starts some text-to-speech output
    */
   saySomething() {
+
     console.log("say something");
 
     let TTS = new TNSTextToSpeech();
     //TTS.getAvailableLanguages().
     let speakOptions: SpeakOptions = {
-        text: 'Hallo Achim du alter Sack'
+        text: 'Ute du bist eine liebe Maus'
     }
 
     // Call the `speak` method passing the SpeakOptions object
     TTS.speak(speakOptions).then(() => {
-        console.log("fine");
-        alert("everything is fine");
+        console.log("successfully spoken");
     }, (err) => {
-    console.log("failed");
-        alert("something failed: " + err);
+        alert("failed to speak: " + err);
     });
 
     console.log("saying something finished");

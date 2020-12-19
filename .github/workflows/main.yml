@@ -27,10 +27,10 @@ jobs:
 
       - name: check sdkmanager
         run: sdkmanager --list
-          
+
 #      - uses: hrueger/setup-nativescript@v1.1.0
 #        with:
-          nativescript-version: '6.5.0'
+#          nativescript-version: '6.5.0'
 #
 #      - name: show tns info
 #        run: tns info
