@@ -1,12 +1,10 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-#  push:
-#    branches: [ main ]
+  push:
+    branches: [ workflow ]
 #  pull_request:
 #    branches: [ main ]
 
@@ -24,10 +22,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        
-      - uses: hrueger/setup-nativescript@v1.1.0
+
+      - uses: actions/setup-node@v2
         with:
-          nativescript-version: '6.5.0'
-          
-      - name: show tns info
-        run: tns info      
+          node-version: '10'
+
+      - name: install nativescript
+        run: |
+          npm install nativescript@6.5.0
+          node_modules/nativescript/bin/tns info
+      - name: build for android
+        run: |
+          node_modules/nativescript/bin/tns build android
