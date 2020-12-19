@@ -27,8 +27,9 @@ jobs:
 
       - name: check sdkmanager
         run: |
-          echo $ANDROID_HOME
-          ls -R $ANDROID_HOME
+          #echo $ANDROID_HOME
+          #ls -R $ANDROID_HOME
+          $ANDROID_HOME/tools/bin/sdkmanager --list
 
 #      - uses: hrueger/setup-nativescript@v1.1.0
 #        with:
