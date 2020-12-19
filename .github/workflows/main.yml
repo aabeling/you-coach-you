@@ -5,8 +5,8 @@ name: CI
 # Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-#  push:
-#    branches: [ main ]
+  push:
+    branches: [ workflow ]
 #  pull_request:
 #    branches: [ main ]
 
@@ -26,7 +26,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: check sdkmanager
-        run: sdkmanager --list
+        run: |
+          echo $ANDROID_HOME
+          /usr/local/lib/android/tools/bin/sdkmanager --list
 
 #      - uses: hrueger/setup-nativescript@v1.1.0
 #        with:
