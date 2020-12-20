@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TextToSpeechService } from '../text-to-speech.service';
+import { TextToSpeechService } from '../services/text-to-speech.service';
 import { TextField } from "tns-core-modules/ui/text-field";
 
 @Component({
