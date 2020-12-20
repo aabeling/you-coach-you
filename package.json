@@ -34,6 +34,9 @@
     "@angular/compiler-cli": "~8.2.0",
     "@nativescript/schematics": "^11.0.0",
     "@ngtools/webpack": "~8.2.0",
+    "@types/jest": "^26.0.19",
+    "jest": "^26.6.3",
+    "jest-preset-angular": "^8.3.2",
     "nativescript-dev-webpack": "~1.5.1",
     "typescript": "~3.5.3"
   },
