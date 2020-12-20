@@ -3,10 +3,12 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
 
 import { SpeakerExampleComponent } from "./speaker-example/speaker-example.component";
+import { ProgramExecutionComponent } from "./program-execution/program-execution.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/speaker-example", pathMatch: "full" },
-    { path: "speaker-example", component: SpeakerExampleComponent }
+    { path: "", redirectTo: "/program-execution", pathMatch: "full" },
+    { path: "speaker-example", component: SpeakerExampleComponent },
+    { path: "program-execution", component: ProgramExecutionComponent }
 ];
 
 @NgModule({

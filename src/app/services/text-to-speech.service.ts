@@ -6,23 +6,25 @@ import { TNSTextToSpeech, SpeakOptions } from 'nativescript-texttospeech';
 })
 export class TextToSpeechService {
 
-  private tts : TNSTextToSpeech = new TNSTextToSpeech();
+  private tts : TNSTextToSpeech;
 
   constructor() { 
 
+    this.tts = new TNSTextToSpeech();
+    
     /* warm up the speech synthesizer by saying nothing */
-    this.say("");
+    this.say("", function() {});
   }
 
-  say(text : string, finishedCallback? : Function) {
+  say(text : string, onSayFinished? : Function) {
 
     console.log("say called with: " + text);
 
     let speakOptions: SpeakOptions = {
       text: text,
       finishedCallback: function() {
-        if (finishedCallback) {
-          finishedCallback();
+        if (onSayFinished) {
+          onSayFinished();
         }
       }
     }
