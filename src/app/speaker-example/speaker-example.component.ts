@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TNSTextToSpeech, SpeakOptions } from 'nativescript-texttospeech';
+import { TextToSpeechService } from '../text-to-speech.service';
 
 @Component({
   selector: 'ns-speaker-example',
@@ -8,7 +8,7 @@ import { TNSTextToSpeech, SpeakOptions } from 'nativescript-texttospeech';
 })
 export class SpeakerExampleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tts : TextToSpeechService) { }
 
   ngOnInit() {
   }
@@ -18,21 +18,8 @@ export class SpeakerExampleComponent implements OnInit {
    */
   saySomething() {
 
-    console.log("say something");
-
-    let TTS = new TNSTextToSpeech();
-    //TTS.getAvailableLanguages().
-    let speakOptions: SpeakOptions = {
-        text: 'Ute du bist eine liebe Maus'
-    }
-
-    // Call the `speak` method passing the SpeakOptions object
-    TTS.speak(speakOptions).then(() => {
-        console.log("successfully spoken");
-    }, (err) => {
-        alert("failed to speak: " + err);
+    this.tts.say("Guten Tag", function() {
+      console.log("ich habe guten tag gesagt");
     });
-
-    console.log("saying something finished");
   }
 }
