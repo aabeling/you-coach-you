@@ -2,7 +2,11 @@
 The ActionBar is the NativeScript common abstraction over the Android ActionBar and iOS NavigationBar.
 http://docs.nativescript.org/ui/action-bar
 -->
-<ActionBar title="you-coach-you">
+<ActionBar title="speaker-example">
 </ActionBar>
 
-<Button text="Hier drücken für Sprachausgabe" (tap)="saySomething()" class="btn btn-primary"></Button>
+<TextField hint="was soll ich sagen?"
+           (returnPress)="onReturnPress($event)"
+           backgroundColor="lightyellow"
+>
+</TextField>
