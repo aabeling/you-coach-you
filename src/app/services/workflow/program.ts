@@ -33,3 +33,21 @@ export class WaitOperation implements Operation {
         return "WaitOperation(delayInSeconds=" + this.delayInSeconds + ")";
     }
 }
+
+export class DisplayOperation implements Operation {
+
+    constructor(private header : string, private description : string) {}
+
+    getHeader() {
+        return this.header;
+    }
+
+    getDescription() {
+        return this.description;
+    }
+    
+    public toString(): string {
+        return "DisplayOperation(header=" + this.header 
+            + ", description=" + this.description + ")";
+    }
+}

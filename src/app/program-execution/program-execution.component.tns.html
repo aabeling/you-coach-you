@@ -1,3 +1,7 @@
 <ActionBar title="you-coach-you"></ActionBar>
 
-<Button text="{{ buttonText }}" isEnabled="{{ buttonEnabled }}" (tap)="onButtonPress()" class="btn btn-primary"></Button>
+<StackLayout orientation="vertical">
+  <Button text="{{ buttonText }}" isEnabled="{{ buttonEnabled }}" (tap)="onButtonPress()" class="btn btn-primary"></Button>
+  <Label text="{{ headerText }}" textWrap="false"></Label>
+  <Label text="{{ descriptionText }}" textWrap="true"></Label>
+</StackLayout>

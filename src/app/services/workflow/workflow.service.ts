@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Program, Operation, SayOperation, WaitOperation } from './program';
+import { Program, Operation, SayOperation, WaitOperation, DisplayOperation } from './program';
 import { ProgramExecution } from './programexecution';
 import { TextToSpeechService } from '~/app/services/text-to-speech.service';
 import { LogService } from '~/app/services/logging/log.service';
@@ -15,9 +15,12 @@ export class WorkflowService {
   public program : Program = {
     name : "Test",
     operations : [
+      new DisplayOperation("Fertig machen!", ""),
       new SayOperation("Die Übungen gehen in 10 Sekunden los."),
       new WaitOperation(10),
       // Uebung 1
+      new DisplayOperation("Übung 1: Entspannung", "Füße mit leichtem Druck gegen die Wand und die "
+        + "Wirbelsäule gegen den Boden pressen. Danach Spannung wieder abbauen."),
       new SayOperation("Übung 1. Entspannung. Füße mit leichtem Druck gegen die Wand und die "
         + "Wirbelsäule gegen den Boden pressen. Danach Spannung wieder abbauen."),
       new WaitOperation(3),
@@ -35,6 +38,8 @@ export class WorkflowService {
       new SayOperation("Und entspannen."),
       new WaitOperation(5),
       // Uebung 2
+      new DisplayOperation("Übung 2. Grundspannung Rückenlage", "Fußspitzen anziehen, Fersen auf den Boden drücken, "
+      + "Bauch- und Gesäßmuskulatur anspannen und Lendenwirbelsäule auf den Boden pressen."),
       new SayOperation("Übung 2. Grundspannung Rückenlage. Fußspitzen anziehen, Fersen auf den Boden drücken, "
         + "Bauch- und Gesäßmuskulatur anspannen und Lendenwirbelsäule auf den Boden pressen."),
       new WaitOperation(3),
@@ -52,6 +57,7 @@ export class WorkflowService {
       new SayOperation("Und entspannen."),
       new WaitOperation(5),
       // Uebung 3
+      new DisplayOperation("Übung 3. Rückenlage",""),
       new SayOperation("Übung 3. Rückenlage. Kopf und Schulter anheben, dann Arme leicht anheben "
         + "und gegen einen gedachten Widerstand drücken."),
       new WaitOperation(3),
@@ -69,6 +75,7 @@ export class WorkflowService {
       new SayOperation("Und entspannen."),
       new WaitOperation(5),
       // Uebung 4
+      new DisplayOperation("Übung 4. Grundspannung Rückenlage",""),
       new SayOperation("Übung 4. Grundspannung Rückenlage. "
         + "Mit der rechten Hand das linke Bein berühren und 10 Sekunden halten, "
         + "für die andere Seite Übung wiederholen."),
@@ -99,6 +106,7 @@ export class WorkflowService {
       new SayOperation("Und entspannen."),
       new WaitOperation(3),
       // Uebung 5
+      new DisplayOperation("Übung 5. Rückenlage",""),
       new SayOperation("Übung 5. Rückenlage. "
         + "Linken Arm und rechtes Bein auf den Boden drücken, mit der rechten Hand gegen das linke Bein drücken, "
         + "danach Seitenwechsel."),
@@ -117,6 +125,7 @@ export class WorkflowService {
       new SayOperation("Dritte Wiederholung rechts."),
       new WaitOperation(5),
       // Uebung 6
+      new DisplayOperation("Übung 6. Rückenlage",""),
       new SayOperation("Übung 6. Rückenlage. Gesäß und Wirbelsäule anheben und Bauch- und Gesäßmuskulatur anspannen."),
       new WaitOperation(3),
       new SayOperation("Es geht los in drei, zwei, eins."),
@@ -133,6 +142,7 @@ export class WorkflowService {
       new SayOperation("Und entspannen."),
       new WaitOperation(5),
       // Uebung 7
+      new DisplayOperation("Übung 7. Rückenlage",""),
       new SayOperation("Übung 7. Rückenlage. Knie mit beiden Händen umfassen und zur Brust ziehen, "
         + "Arme danach strecken und Knie gegen den Händewiderstand drücken."),
       new WaitOperation(3),
@@ -144,6 +154,7 @@ export class WorkflowService {
       new SayOperation("Und entspannen."),
       new WaitOperation(5),
       // Uebung 8
+      new DisplayOperation("Übung 8. Grundspannung Bauchlage",""),
       new SayOperation("Übung 8. Grundspannung Bauchlage. Fersen wegdrücken, Kopf leicht anheben. "
         + "Hals nicht überstrecken."),
       new WaitOperation(3),
@@ -161,6 +172,7 @@ export class WorkflowService {
       new SayOperation("Und entspannen."),
       new WaitOperation(5),
       // Uebung 9
+      new DisplayOperation("Übung 9. Bauchlage",""),
       new SayOperation("Übung 9. Bauchlage. Arme in U-Form anheben und die Schulterblätter Richtung Wirbelsäule zusammenschieben."),
       new WaitOperation(3),
       new SayOperation("Es geht los in drei, zwei, eins."),
@@ -177,6 +189,7 @@ export class WorkflowService {
       new SayOperation("Und entspannen."),
       new WaitOperation(5),
       // Uebung 10
+      new DisplayOperation("Übung 10. Bauchlage",""),
       new SayOperation("Übung 10. Bauchlage. Arme und Oberkörper leicht anheben und nach beiden Seiten leicht verlagern."),
       new WaitOperation(3),
       new SayOperation("Es geht los in drei, zwei, eins."),
@@ -184,6 +197,7 @@ export class WorkflowService {
       new WaitOperation(30),
       new SayOperation("Und entspannen."),
       // Uebung 11
+      new DisplayOperation("Übung 11. Vierfüßlerstand",""),
       new SayOperation("Übung 11. Vierfüßlerstand. Beine und Arme in der Waagerechten halten."),
       new WaitOperation(3),
       new SayOperation("Es geht los in drei, zwei, eins."),
@@ -200,6 +214,7 @@ export class WorkflowService {
       new SayOperation("Dritte Wiederholung rechts."),
       new WaitOperation(5),
       // Uebung 12
+      new DisplayOperation("Übung 12. Vierfüßlerstand",""),
       new SayOperation("Übung 12. Vierfüßlerstand. Katzenbuckel bilden."),
       new WaitOperation(3),
       new SayOperation("Es geht los in drei, zwei, eins."),
@@ -219,6 +234,8 @@ export class WorkflowService {
       new SayOperation("Und das war es auch schon.")
     ]
   };
+
+  public onDisplayOperation : Function = undefined;
 
   constructor(
     private tts : TextToSpeechService,
@@ -260,6 +277,11 @@ export class WorkflowService {
           self.log.debug("wait ended");
           self.handleOperationEnded(execution);
         }, nextOperation.delayInSeconds * 1000);
+      } else if (nextOperation instanceof DisplayOperation) {
+        if (this.onDisplayOperation) {
+          this.onDisplayOperation(nextOperation);
+          this.handleOperationEnded(execution);
+        }
       } else {
         this.log.debug("unhandled operation: {}", nextOperation);
       }
