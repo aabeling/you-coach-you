@@ -1,6 +1,6 @@
 {
   "nativescript": {
-    "id": "org.nativescript.youcoachyou",
+    "id": "de.banapple.youcoachyou",
     "tns-android": {
       "version": "6.5.0"
     },
