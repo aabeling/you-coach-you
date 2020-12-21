@@ -1,10 +1,13 @@
 import { Program, Operation } from "./program";
+import { LogService } from '~/app/services/logging/log.service';
 
 export class ProgramExecution {
 
     private operationIndex : number;
 
-    constructor(private program : Program) {
+    constructor(
+        private program : Program,
+        private log : LogService) {
         this.program = program;
         this.operationIndex = 0;
     }
@@ -13,16 +16,16 @@ export class ProgramExecution {
 
         if (this.operationIndex < this.program.operations.length) {
             let result = this.program.operations[this.operationIndex];
-            console.log("nextOperation at index: ", this.operationIndex, result);
+            this.log.debug("nextOperation at index {}: {}", this.operationIndex, result);
             return result;
         } else {
-            console.log("no more operations");
+            this.log.debug("no more operations");
             return null;
         }
     }
 
     next() {
         this.operationIndex = this.operationIndex + 1;
-        console.log("next operationIndex: " + this.operationIndex);
+        this.log.debug("next operationIndex: {}", this.operationIndex);
     }
 }

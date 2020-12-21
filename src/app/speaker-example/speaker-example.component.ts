@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TextToSpeechService } from '../services/text-to-speech.service';
 import { TextField } from "tns-core-modules/ui/text-field";
+import { LogService } from '~/app/services/logging/log.service';
 
 @Component({
   selector: 'ns-speaker-example',
@@ -9,7 +10,9 @@ import { TextField } from "tns-core-modules/ui/text-field";
 })
 export class SpeakerExampleComponent implements OnInit {
 
-  constructor(private tts : TextToSpeechService) { }
+  constructor(
+    private tts : TextToSpeechService,
+    private log : LogService) { }
 
   ngOnInit() {
   }
@@ -19,8 +22,9 @@ export class SpeakerExampleComponent implements OnInit {
    */
   saySomething(text : string) {
 
+    let self = this;
     this.tts.say(text, function() {
-      console.log("ich habe gesprochen");
+      self.log.debug("ich habe gesprochen");
     });
   }
 

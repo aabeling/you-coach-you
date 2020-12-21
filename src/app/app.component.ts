@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { keepAwake, allowSleepAgain } from "nativescript-insomnia";
+import { LogService } from '~/app/services/logging/log.service';
 
 @Component({
     selector: "ns-app",
@@ -7,11 +8,14 @@ import { keepAwake, allowSleepAgain } from "nativescript-insomnia";
 })
 export class AppComponent implements OnInit {
 
+    constructor(private log : LogService) {}
+
     ngOnInit(): void {    
         
         /* keep the screen from getting inactive */
+        let self = this;
         keepAwake().then(function() {
-            console.log("Insomnia is active");
+            self.log.debug("Insomnia is active");
         })
     } 
 

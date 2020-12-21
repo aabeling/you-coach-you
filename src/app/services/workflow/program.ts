@@ -15,6 +15,10 @@ export class SayOperation implements Operation {
     constructor(text : string) {
         this.text = text;
     }
+
+    public toString(): string {
+        return "SayOperation(text=" + this.text + ")";
+    }
 }
 
 export class WaitOperation implements Operation {
@@ -23,5 +27,9 @@ export class WaitOperation implements Operation {
 
     constructor(delayInSeconds : number) {
         this.delayInSeconds = delayInSeconds;
+    }
+
+    public toString(): string {
+        return "WaitOperation(delayInSeconds=" + this.delayInSeconds + ")";
     }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Program, Operation, SayOperation, WaitOperation } from './program';
 import { ProgramExecution } from './programexecution';
 import { TextToSpeechService } from '~/app/services/text-to-speech.service';
+import { LogService } from '~/app/services/logging/log.service';
 
 /**
  * The WorkflowService handles the execution of the steps of exercises.
@@ -219,12 +220,14 @@ export class WorkflowService {
     ]
   };
 
-  constructor(private tts : TextToSpeechService) { }
+  constructor(
+    private tts : TextToSpeechService,
+    private log : LogService) { }
 
   executeProgram(program : Program) {
 
-    console.log("executing program: " + program.name);
-    let execution : ProgramExecution = new ProgramExecution(program);
+    this.log.debug("executing program: {}", program.name);
+    let execution : ProgramExecution = new ProgramExecution(program, this.log);
 
     this.handleNextOperation(execution);
   }
@@ -236,25 +239,25 @@ export class WorkflowService {
       let self = this;
       if (nextOperation instanceof SayOperation) {
         this.tts.say(nextOperation.text, function() {
-          console.log("say ended");
+          self.log.debug("say ended");
           self.handleOperationEnded(execution);
         });
       } else if (nextOperation instanceof WaitOperation) {
         setTimeout(function() {
-          console.log("wait ended");
+          self.log.debug("wait ended");
           self.handleOperationEnded(execution);
         }, nextOperation.delayInSeconds * 1000);
       } else {
-        console.log("unhandled operation: " + nextOperation);
+        this.log.debug("unhandled operation: {}", nextOperation);
       }
     } else {
-      console.log("program ended");
+      this.log.debug("program ended");
     }
   }
 
   private handleOperationEnded(execution : ProgramExecution) {
 
-    console.log("operation ended");
+    this.log.debug("operation ended");
     execution.next();
     this.handleNextOperation(execution);
   }
