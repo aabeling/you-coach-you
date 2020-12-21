@@ -3,6 +3,7 @@ import { WorkflowService } from '../services/workflow/workflow.service';
 import { Button } from "tns-core-modules/ui/button";
 import { EventData} from "tns-core-modules/data/observable";
 import { LogService } from '~/app/services/logging/log.service';
+import { ProgramExecution } from '../services/workflow/programexecution';
 
 @Component({
   selector: 'ns-program-execution',
@@ -11,6 +12,10 @@ import { LogService } from '~/app/services/logging/log.service';
 })
 export class ProgramExecutionComponent implements OnInit {
 
+  buttonEnabled : boolean = true;
+  buttonText : string = "Start";
+  execution : ProgramExecution;
+
   constructor(
     private workflowService : WorkflowService,
     private log : LogService) { }
@@ -18,11 +23,28 @@ export class ProgramExecutionComponent implements OnInit {
   ngOnInit() {
   }
 
-  startExecution(args: EventData) {
+  onButtonPress(args : EventData) {
+
+    if (this.buttonText == "Start") {
+      this.startExecution();
+    } else {
+      this.stopExecution();
+    }
+  }
+
+  startExecution() {
 
     this.log.debug("starting execution");
-    // TODO disable button or convert it to "pause"
+    this.buttonText = "Stop";
 
-    this.workflowService.executeProgram(this.workflowService.program);
+    this.execution = this.workflowService.executeProgram(this.workflowService.program);
+  }
+
+  stopExecution() {
+
+    this.log.debug("stopping execution");
+    this.buttonText = "Start";
+
+    this.workflowService.stopExecution(this.execution);
   }
 }

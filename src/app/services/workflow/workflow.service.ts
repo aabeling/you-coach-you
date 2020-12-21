@@ -224,15 +224,28 @@ export class WorkflowService {
     private tts : TextToSpeechService,
     private log : LogService) { }
 
-  executeProgram(program : Program) {
+  executeProgram(program : Program) : ProgramExecution {
 
     this.log.debug("executing program: {}", program.name);
     let execution : ProgramExecution = new ProgramExecution(program, this.log);
 
     this.handleNextOperation(execution);
+
+    return execution;
+  }
+
+  stopExecution(execution : ProgramExecution) {
+
+    this.log.debug("stopping execution");
+    execution.stop();
   }
 
   private handleNextOperation(execution : ProgramExecution) {
+    
+    if (execution.isStopped) {
+      this.log.debug("execution is stopped");
+      return;
+    }
     
     let nextOperation : Operation = execution.nextOperation();
     if (nextOperation != null) {

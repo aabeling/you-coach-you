@@ -4,6 +4,7 @@ import { LogService } from '~/app/services/logging/log.service';
 export class ProgramExecution {
 
     private operationIndex : number;
+    isStopped : boolean = false;
 
     constructor(
         private program : Program,
@@ -27,5 +28,9 @@ export class ProgramExecution {
     next() {
         this.operationIndex = this.operationIndex + 1;
         this.log.debug("next operationIndex: {}", this.operationIndex);
+    }
+
+    stop() {
+        this.isStopped = true;
     }
 }
