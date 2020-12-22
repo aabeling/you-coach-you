@@ -15,7 +15,11 @@ export class LogService {
   private log(level : string, message : string, parts : any[]) {
 
     parts.forEach(part => {
-      message = message.replace('{}', part.toString())
+      if (part && part.toString) {
+        message = message.replace('{}', part.toString())
+      } else {
+        message = message.replace('{}', '<undefined>');
+      }
     });
     console.log(level + ": " + message);
   }

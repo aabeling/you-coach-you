@@ -13,7 +13,7 @@ import { LogService } from '~/app/services/logging/log.service';
 export class WorkflowService {
 
   public program : Program = {
-    name : "Test",
+    name : "Default",
     operations : [
       new DisplayOperation("Fertig machen!", ""),
       new SayOperation("Die Übungen gehen in 10 Sekunden los."),
@@ -267,19 +267,22 @@ export class WorkflowService {
     let nextOperation : Operation = execution.nextOperation();
     if (nextOperation != null) {
       let self = this;
-      if (nextOperation instanceof SayOperation) {
-        this.tts.say(nextOperation.text, function() {
+      if (nextOperation.name == 'say') {
+        let sayOperation = <SayOperation> nextOperation;
+        this.tts.say(sayOperation.text, function() {
           self.log.debug("say ended");
           self.handleOperationEnded(execution);
         });
-      } else if (nextOperation instanceof WaitOperation) {
+      } else if (nextOperation.name == "wait") {
+        let waitOperation = <WaitOperation> nextOperation;
         setTimeout(function() {
           self.log.debug("wait ended");
           self.handleOperationEnded(execution);
-        }, nextOperation.delayInSeconds * 1000);
-      } else if (nextOperation instanceof DisplayOperation) {
+        }, waitOperation.delayInSeconds * 1000);
+      } else if (nextOperation.name == "display") {
         if (this.onDisplayOperation) {
-          this.onDisplayOperation(nextOperation);
+          let displayOperation = <DisplayOperation> nextOperation;
+          this.onDisplayOperation(displayOperation);
           this.handleOperationEnded(execution);
         }
       } else {

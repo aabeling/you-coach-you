@@ -1,35 +1,52 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { WorkflowService } from '../services/workflow/workflow.service';
+import { ProgramManagerService } from '~/app/services/program-manager/program-manager.service';
 import { EventData} from "tns-core-modules/data/observable";
 import { LogService } from '~/app/services/logging/log.service';
 import { ProgramExecution } from '../services/workflow/programexecution';
 import { DisplayOperation } from '../services/workflow/program';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'ns-program-execution',
   templateUrl: './program-execution.component.html',
   styleUrls: ['./program-execution.component.css']
 })
-export class ProgramExecutionComponent implements OnInit {
+export class ProgramExecutionComponent implements OnInit, OnDestroy {
 
   buttonEnabled : boolean = true;
   buttonText : string = "Start";
   headerText : string = "";
   descriptionText : string = "";
-
   execution : ProgramExecution;
+  private sub : any;
+  private programId : string;
 
   constructor(
     private workflowService : WorkflowService,
     private log : LogService,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone,
+    private route: ActivatedRoute,
+    private programManager : ProgramManagerService) { }
 
   ngOnInit() {
+
+    this.log.debug("ProgramExecutionComponent#ngOnInit");
 
     let self = this;
     this.workflowService.onDisplayOperation = function(operation : DisplayOperation) {
       self.onDisplayOperation(operation);
     }
+
+    this.sub = this.route.params.subscribe(params => {
+      this.programId = params['id'];
+      this.log.debug("component created for programId {}", this.programId);
+   });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   onButtonPress(args : EventData) {
@@ -43,10 +60,12 @@ export class ProgramExecutionComponent implements OnInit {
 
   startExecution() {
 
+    let program = this.programManager.getProgram(this.programId);
+
     this.log.debug("starting execution");
     this.buttonText = "Stop";
 
-    this.execution = this.workflowService.executeProgram(this.workflowService.program);
+    this.execution = this.workflowService.executeProgram(program);
   }
 
   stopExecution() {
@@ -60,8 +79,8 @@ export class ProgramExecutionComponent implements OnInit {
   onDisplayOperation(operation : DisplayOperation) {
 
     this.ngZone.run( () => {
-      this.headerText = operation.getHeader();
-      this.descriptionText = operation.getDescription();
+      this.headerText = operation.header;
+      this.descriptionText = operation.description;
     });
     
     this.log.debug("header text is now {}", this.headerText);

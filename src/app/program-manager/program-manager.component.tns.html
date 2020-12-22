@@ -1,7 +1,7 @@
 <ActionBar title="you-coach-you program-manager"></ActionBar>
 
 <StackLayout>
-    <Button text="Neues Programm" (tap)="createProgram"></Button>
+    <Button text="Neues Programm" (tap)="createProgram()"></Button>
     <ListView [items]="programs" class="list-group" backgroundColor="white" separatorColor="blue" height="100%">
         <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
             <GridLayout height="60" width="100%" columns="*,24">

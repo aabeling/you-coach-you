@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Couchbase } from 'nativescript-couchbase-plugin';
 import { LogService } from '~/app/services/logging/log.service';
+import { WorkflowService } from '~/app/services/workflow/workflow.service';
+import { Program } from '~/app/services/workflow/program';
 
 /**
  * Provides access to a local storage of programs.
@@ -12,14 +14,22 @@ export class ProgramManagerService {
     
   database: Couchbase;
 
-  constructor(private log : LogService) { 
+  constructor(
+    private log : LogService,
+    private workflowService : WorkflowService) { 
+
     this.database = new Couchbase('you-coach-you');
     this.log.debug("created database", this.database);
 
-//    let id = Math.floor(Math.random() * 1000);
-//    this.database.createDocument({
-//      "name": "program" + id
-//    });
+    /* TODO remove this: for testing a default program is added */
+    let programs = this.database.query({
+      select: [],
+      where: [{ property: 'name', comparison: 'equalTo', value: 'Default' }]
+    });
+    if (programs.length == 0) {
+      this.database.createDocument(workflowService.program); 
+      this.log.debug("created default program");
+    }
   }
 
   /**
@@ -35,6 +45,13 @@ export class ProgramManagerService {
     });
   }
 
+  getProgram(programId: string) : Program {
+
+    let result = <Program> this.database.getDocument(programId);
+
+    return result;
+  }
+  
   deleteProgram(id: string) {
 
     this.database.deleteDocument(id);

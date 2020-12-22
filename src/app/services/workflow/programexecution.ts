@@ -15,6 +15,11 @@ export class ProgramExecution {
     
     nextOperation() : Operation {
 
+        if (!this.program.operations) {
+            this.log.debug("no operations defined in program");
+            return null;
+        }
+        
         if (this.operationIndex < this.program.operations.length) {
             let result = this.program.operations[this.operationIndex];
             this.log.debug("nextOperation at index {}: {}", this.operationIndex, result);

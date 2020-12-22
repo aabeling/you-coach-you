@@ -3,6 +3,7 @@ import { ProgramManagerService } from '~/app/services/program-manager/program-ma
 import { LogService } from '~/app/services/logging/log.service';
 import { EventData} from "tns-core-modules/data/observable";
 import { confirm } from "tns-core-modules/ui/dialogs";
+import { RouterExtensions } from 'nativescript-angular/router';
 
 @Component({
   selector: 'ns-program-manager',
@@ -16,7 +17,8 @@ export class ProgramManagerComponent implements OnInit {
   constructor(
     private programManager : ProgramManagerService,
     private ngZone: NgZone,
-    private log : LogService) { }
+    private log : LogService,
+    private router: RouterExtensions) { }
 
   ngOnInit() {
 
@@ -63,5 +65,11 @@ export class ProgramManagerComponent implements OnInit {
     let programId = target.get('programId');
 
     this.log.debug("select program: {}", programId);
+    this.router.navigate(['program-execution', {id : programId}]);
+  }
+
+  createProgram() {
+
+    this.log.debug("create program");
   }
 }
