@@ -4,11 +4,13 @@ import { Routes } from "@angular/router";
 
 import { SpeakerExampleComponent } from "./speaker-example/speaker-example.component";
 import { ProgramExecutionComponent } from "./program-execution/program-execution.component";
+import { ProgramManagerComponent } from "./program-manager/program-manager.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/program-execution", pathMatch: "full" },
+    { path: "", redirectTo: "/program-manager", pathMatch: "full" },
     { path: "speaker-example", component: SpeakerExampleComponent },
-    { path: "program-execution", component: ProgramExecutionComponent }
+    { path: "program-execution", component: ProgramExecutionComponent },
+    { path: "program-manager", component: ProgramManagerComponent }
 ];
 
 @NgModule({

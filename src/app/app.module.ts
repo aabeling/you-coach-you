@@ -5,6 +5,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ProgramExecutionComponent } from "./program-execution/program-execution.component";
 import { SpeakerExampleComponent } from "./speaker-example/speaker-example.component";
+import { ProgramManagerComponent } from './program-manager/program-manager.component';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -23,7 +24,8 @@ import { SpeakerExampleComponent } from "./speaker-example/speaker-example.compo
     declarations: [
         AppComponent,
         SpeakerExampleComponent,
-        ProgramExecutionComponent
+        ProgramExecutionComponent,
+        ProgramManagerComponent
     ],
     providers: [],
     schemas: [

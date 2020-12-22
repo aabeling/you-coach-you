@@ -23,6 +23,7 @@
     "@nativescript/theme": "~2.3.3",
     "nativescript": "^6.5.0",
     "nativescript-angular": "~8.21.0",
+    "nativescript-couchbase-plugin": "^0.9.6",
     "nativescript-insomnia": "^1.2.3",
     "nativescript-texttospeech": "^2.0.3",
     "reflect-metadata": "~0.1.12",

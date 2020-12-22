@@ -1,0 +1,13 @@
+<ActionBar title="you-coach-you program-manager"></ActionBar>
+
+<StackLayout>
+    <Button text="Neues Programm" (tap)="createProgram"></Button>
+    <ListView [items]="programs" class="list-group" backgroundColor="white" separatorColor="blue" height="100%">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <GridLayout height="60" width="100%" columns="*,24">
+                <Label [text]="item.name" col="0" class="list-group-item" color="black" programId="{{ item.id }}" (tap)="selectProgram($event)"></Label>
+                <Image width="24" height="24" src="res://deletebutton" col="1" programName="{{ item.name }}" programId="{{ item.id }}" (tap)="deleteProgram($event)"></Image>
+            </GridLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>
