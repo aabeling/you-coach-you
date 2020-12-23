@@ -8,6 +8,7 @@ import { ProgramExecution } from '~/app/services/workflow/programexecution';
 import { DisplayOperation } from '~/app/services/workflow/program';
 import { YamlParserService } from '~/app/services/upload/yaml-parser.service';
 import { alert } from 'tns-core-modules/ui/dialogs';
+import { RouterExtensions } from 'nativescript-angular/router';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
     private ngZone: NgZone,
     private route: ActivatedRoute,
     private programManager : ProgramManagerService,
-    private yamlParser : YamlParserService) { }
+    private yamlParser : YamlParserService,
+    private routerExtensions: RouterExtensions) { }
 
   ngOnInit() {
 
@@ -41,6 +43,9 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
     this.workflowService.onDisplayOperation = function(operation : DisplayOperation) {
       self.onDisplayOperation(operation);
     }
+    this.workflowService.onProgramEnded = function() {
+      self.onProgramEnded();
+    };
 
     this.sub = this.route.params.subscribe(params => {
       this.programId = params['id'];
@@ -94,5 +99,19 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
     });
     
     this.log.debug("header text is now {}", this.headerText);
+  }
+
+  onProgramEnded() {
+
+    this.ngZone.run( () => {
+      this.log.debug("program ended");
+      this.buttonText = "Start";
+    });
+    
+  }
+
+  onNavBtnTap() {
+    console.log("Navigation button tapped!");
+    this.routerExtensions.back();
   }
 }

@@ -246,6 +246,7 @@ export class WorkflowService {
   };
 
   public onDisplayOperation : Function = undefined;
+  public onProgramEnded: Function = undefined;
 
   constructor(
     private tts : TextToSpeechService,
@@ -300,6 +301,9 @@ export class WorkflowService {
       }
     } else {
       this.log.debug("program ended");
+      if (this.onProgramEnded) {
+        this.onProgramEnded();
+      }
     }
   }
 
