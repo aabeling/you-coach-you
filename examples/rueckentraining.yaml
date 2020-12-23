@@ -1,0 +1,426 @@
+name: Rückentraining für die Lendenwirbelsäule
+operations:
+  - name: display
+    header: Fertig machen!
+    description: ''
+  - name: say
+    text: Die Übungen gehen in 10 Sekunden los.
+  - name: wait
+    delayInSeconds: 10
+  - name: display
+    header: 'Übung 1: Entspannung'
+    description: >-
+      Füße mit leichtem Druck gegen die Wand und die Wirbelsäule gegen den Boden
+      pressen. Danach Spannung wieder abbauen.
+  - name: say
+    text: >-
+      Übung 1. Entspannung. Füße mit leichtem Druck gegen die Wand und die
+      Wirbelsäule gegen den Boden pressen. Danach Spannung wieder abbauen.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Zweite Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Dritte Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: display
+    header: Übung 2. Grundspannung Rückenlage
+    description: >-
+      Fußspitzen anziehen, Fersen auf den Boden drücken, Bauch- und
+      Gesäßmuskulatur anspannen und Lendenwirbelsäule auf den Boden pressen.
+  - name: say
+    text: >-
+      Übung 2. Grundspannung Rückenlage. Fußspitzen anziehen, Fersen auf den
+      Boden drücken, Bauch- und Gesäßmuskulatur anspannen und Lendenwirbelsäule
+      auf den Boden pressen.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Zweite Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Dritte Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: display
+    header: Übung 3. Rückenlage
+    description: ''
+  - name: say
+    text: >-
+      Übung 3. Rückenlage. Kopf und Schulter anheben, dann Arme leicht anheben
+      und gegen einen gedachten Widerstand drücken.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Zweite Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Dritte Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: display
+    header: Übung 4. Grundspannung Rückenlage
+    description: ''
+  - name: say
+    text: >-
+      Übung 4. Grundspannung Rückenlage. Mit der rechten Hand das linke Bein
+      berühren und 10 Sekunden halten, für die andere Seite Übung wiederholen.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung links.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: Erste Wiederholung rechts.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: Zweite Wiederholung links.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: Zweite Wiederholung rechts.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: Dritte Wiederholung links.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: Dritte Wiederholung rechts.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 3
+  - name: display
+    header: Übung 5. Rückenlage
+    description: ''
+  - name: say
+    text: >-
+      Übung 5. Rückenlage. Linken Arm und rechtes Bein auf den Boden drücken,
+      mit der rechten Hand gegen das linke Bein drücken, danach Seitenwechsel.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung links.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Erste Wiederholung rechts.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Zweite Wiederholung links.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Zweite Wiederholung rechts.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Dritte Wiederholung links.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Dritte Wiederholung rechts.
+  - name: wait
+    delayInSeconds: 5
+  - name: display
+    header: Übung 6. Rückenlage
+    description: ''
+  - name: say
+    text: >-
+      Übung 6. Rückenlage. Gesäß und Wirbelsäule anheben und Bauch- und
+      Gesäßmuskulatur anspannen.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Zweite Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Dritte Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: display
+    header: Übung 7. Rückenlage
+    description: ''
+  - name: say
+    text: >-
+      Übung 7. Rückenlage. Knie mit beiden Händen umfassen und zur Brust ziehen,
+      Arme danach strecken und Knie gegen den Händewiderstand drücken.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Mit dem linken Bein.
+  - name: wait
+    delayInSeconds: 30
+  - name: say
+    text: Mit dem rechten Bein.
+  - name: wait
+    delayInSeconds: 30
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: display
+    header: Übung 8. Grundspannung Bauchlage
+    description: ''
+  - name: say
+    text: >-
+      Übung 8. Grundspannung Bauchlage. Fersen wegdrücken, Kopf leicht anheben.
+      Hals nicht überstrecken.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Zweite Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Dritte Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: display
+    header: Übung 9. Bauchlage
+    description: ''
+  - name: say
+    text: >-
+      Übung 9. Bauchlage. Arme in U-Form anheben und die Schulterblätter
+      Richtung Wirbelsäule zusammenschieben.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Zweite Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Dritte Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: display
+    header: Übung 10. Bauchlage
+    description: ''
+  - name: say
+    text: >-
+      Übung 10. Bauchlage. Arme und Oberkörper leicht anheben und nach beiden
+      Seiten leicht verlagern.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Anheben für 30 Sekunden.
+  - name: wait
+    delayInSeconds: 30
+  - name: say
+    text: Und entspannen.
+  - name: display
+    header: Übung 11. Vierfüßlerstand
+    description: ''
+  - name: say
+    text: Übung 11. Vierfüßlerstand. Beine und Arme in der Waagerechten halten.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung links.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Erste Wiederholung rechts.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Zweite Wiederholung links.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Zweite Wiederholung rechts.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Dritte Wiederholung links.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Dritte Wiederholung rechts.
+  - name: wait
+    delayInSeconds: 5
+  - name: display
+    header: Übung 12. Vierfüßlerstand
+    description: ''
+  - name: say
+    text: Übung 12. Vierfüßlerstand. Katzenbuckel bilden.
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: 'Es geht los in drei, zwei, eins.'
+  - name: say
+    text: Erste Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Zweite Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Dritte Wiederholung. Anspannen.
+  - name: wait
+    delayInSeconds: 10
+  - name: say
+    text: Und entspannen.
+  - name: wait
+    delayInSeconds: 5
+  - name: say
+    text: Und das war es auch schon.

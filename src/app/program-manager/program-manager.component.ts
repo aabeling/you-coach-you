@@ -71,5 +71,6 @@ export class ProgramManagerComponent implements OnInit {
   createProgram() {
 
     this.log.debug("create program");
+    this.router.navigate(['program-upload']);
   }
 }

@@ -1,0 +1,11 @@
+<ActionBar title="you-coach-you program-upload"></ActionBar>
+
+<StackLayout>
+    <TextField hint="Upload-URL" 
+        [text]='uploadUrl' 
+        keyboardType="url"
+        (returnPress)="uploadFromUrl($event)">
+    </TextField>
+    <ActivityIndicator [busy]="isBusy"></ActivityIndicator>
+
+</StackLayout>

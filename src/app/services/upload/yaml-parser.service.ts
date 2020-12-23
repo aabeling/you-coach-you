@@ -16,14 +16,14 @@ export class YamlParserService {
   parseProgramYaml(content : string) : Program {
 
     let program = <Program> yaml.safeLoad(content);
-    this.log.debug("successfully loaded yaml file");
+    this.log.debug("successfully parsed yaml file");
 
     return program;
   }
 
   writeProgramYaml(program : Program) : string {
 
-    return yaml.safeDump(program);
-    
+    this.log.debug("writing program {} with {} operations", program.name, program.operations.length);
+    return yaml.safeDump(program);    
   }
 }

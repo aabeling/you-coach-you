@@ -3,6 +3,7 @@ import { Couchbase } from 'nativescript-couchbase-plugin';
 import { LogService } from '~/app/services/logging/log.service';
 import { WorkflowService } from '~/app/services/workflow/workflow.service';
 import { Program } from '~/app/services/workflow/program';
+import { TitleCasePipe } from '@angular/common';
 
 /**
  * Provides access to a local storage of programs.
@@ -24,12 +25,17 @@ export class ProgramManagerService {
     /* TODO remove this: for testing a default program is added */
     let programs = this.database.query({
       select: [],
-      where: [{ property: 'name', comparison: 'equalTo', value: 'Default' }]
+      where: [{ property: 'name', comparison: 'equalTo', value: 'Default for Testing' }]
     });
     if (programs.length == 0) {
       this.database.createDocument(workflowService.defaultProgram); 
       this.log.debug("created default program");
     }
+  }
+
+  public storeProgram(program : Program) {
+    this.database.createDocument(program);
+    this.log.debug("successfully stored program");
   }
 
   /**

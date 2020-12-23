@@ -7,6 +7,7 @@ import { LogService } from '~/app/services/logging/log.service';
 import { ProgramExecution } from '~/app/services/workflow/programexecution';
 import { DisplayOperation } from '~/app/services/workflow/program';
 import { YamlParserService } from '~/app/services/upload/yaml-parser.service';
+import { alert } from 'tns-core-modules/ui/dialogs';
 
 
 @Component({
@@ -68,8 +69,11 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
     this.buttonText = "Stop";
 
     /* TODO remove this output */
-    let yamlDump = this.yamlParser.writeProgramYaml(program);
-    this.log.debug("yaml dump: {}", yamlDump);
+    //let yamlDump = this.yamlParser.writeProgramYaml(program);
+    //this.log.debug("yaml dump: {}", yamlDump);
+
+    //let dump = this.yamlParser.writeProgramYaml(this.workflowService.program);
+    //dump.split('\n', 10000000).forEach(line => console.log(line));
 
     this.execution = this.workflowService.executeProgram(program);
   }

@@ -6,12 +6,12 @@ import { AppComponent } from "./app.component";
 import { ProgramExecutionComponent } from "./program-execution/program-execution.component";
 import { SpeakerExampleComponent } from "./speaker-example/speaker-example.component";
 import { ProgramManagerComponent } from './program-manager/program-manager.component';
+import { ProgramUploadComponent } from './program-upload/program-upload.component';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
-// Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
-// import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
 @NgModule({
     bootstrap: [
@@ -19,13 +19,15 @@ import { ProgramManagerComponent } from './program-manager/program-manager.compo
     ],
     imports: [
         NativeScriptModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NativeScriptHttpClientModule
     ],
     declarations: [
         AppComponent,
         SpeakerExampleComponent,
         ProgramExecutionComponent,
-        ProgramManagerComponent
+        ProgramManagerComponent,
+        ProgramUploadComponent
     ],
     providers: [],
     schemas: [

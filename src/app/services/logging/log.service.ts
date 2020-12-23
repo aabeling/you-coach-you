@@ -5,11 +5,18 @@ import { Injectable } from '@angular/core';
 })
 export class LogService {
 
+  index : number = 0;
+
   constructor() { }
 
   debug(message : string, ...parts: any[]) {
 
     this.log("DEBUG", message, parts);
+  }
+
+  error(message : string, ...parts: any[]) {
+
+    this.log("ERROR", message, parts);
   }
 
   private log(level : string, message : string, parts : any[]) {
@@ -18,9 +25,10 @@ export class LogService {
       if (part && part.toString) {
         message = message.replace('{}', part.toString())
       } else {
-        message = message.replace('{}', '<undefined>');
+        message = message.replace('{}', part);
       }
     });
-    console.log(level + ": " + message);
+    this.index++;
+    console.log(this.index + " " + level + ": " + message);
   }
 }
