@@ -4,10 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LogService {
+  
+  category: string = '';
 
-  index : number = 0;
+  static getLogger(category: string) {
+    let result = new LogService();
+    result.category = category;
+    return result;
+  }
 
-  constructor() { }
+  constructor() {}
 
   debug(message : string, ...parts: any[]) {
 
@@ -22,13 +28,9 @@ export class LogService {
   private log(level : string, message : string, parts : any[]) {
 
     parts.forEach(part => {
-      if (part && part.toString) {
-        message = message.replace('{}', part.toString())
-      } else {
-        message = message.replace('{}', part);
-      }
+      message = message.replace('{}', JSON.stringify(part));      
     });
-    this.index++;
-    console.log(this.index + " " + level + ": " + message);
+
+    console.log(new Date().toTimeString().substr(0,8) + " " + this.category.padEnd(30,' ') + " [" + level.padStart(5,' ') + "] : " + message);
   }
 }

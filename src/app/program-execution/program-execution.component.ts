@@ -10,6 +10,7 @@ import { YamlParserService } from '~/app/services/upload/yaml-parser.service';
 import { alert } from 'tns-core-modules/ui/dialogs';
 import { RouterExtensions } from 'nativescript-angular/router';
 
+const LOG = LogService.getLogger('ProgramExecutionComponent');
 
 @Component({
   selector: 'ns-program-execution',
@@ -28,7 +29,6 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
 
   constructor(
     private workflowService : WorkflowService,
-    private log : LogService,
     private ngZone: NgZone,
     private route: ActivatedRoute,
     private programManager : ProgramManagerService,
@@ -37,7 +37,7 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.log.debug("ProgramExecutionComponent#ngOnInit");
+    LOG.debug("ProgramExecutionComponent#ngOnInit");
 
     let self = this;
     this.workflowService.onDisplayOperation = function(operation : DisplayOperation) {
@@ -49,7 +49,7 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
 
     this.sub = this.route.params.subscribe(params => {
       this.programId = params['id'];
-      this.log.debug("component created for programId {}", this.programId);
+      LOG.debug("component created for programId {}", this.programId);
    });
   }
 
@@ -70,12 +70,12 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
 
     let program = this.programManager.getProgram(this.programId);
 
-    this.log.debug("starting execution");
+    LOG.debug("starting execution");
     this.buttonText = "Stop";
 
     /* TODO remove this output */
     //let yamlDump = this.yamlParser.writeProgramYaml(program);
-    //this.log.debug("yaml dump: {}", yamlDump);
+    //LOG.debug("yaml dump: {}", yamlDump);
 
     //let dump = this.yamlParser.writeProgramYaml(this.workflowService.program);
     //dump.split('\n', 10000000).forEach(line => console.log(line));
@@ -85,7 +85,7 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
 
   stopExecution() {
 
-    this.log.debug("stopping execution");
+    LOG.debug("stopping execution");
     this.buttonText = "Start";
 
     this.workflowService.stopExecution(this.execution);
@@ -98,20 +98,20 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
       this.descriptionText = operation.description;
     });
     
-    this.log.debug("header text is now {}", this.headerText);
+    LOG.debug("header text is now {}", this.headerText);
   }
 
   onProgramEnded() {
 
     this.ngZone.run( () => {
-      this.log.debug("program ended");
+      LOG.debug("program ended");
       this.buttonText = "Start";
     });
     
   }
 
   onNavBtnTap() {
-    console.log("Navigation button tapped!");
+    LOG.debug("Navigation button tapped!");
     this.routerExtensions.back();
   }
 }

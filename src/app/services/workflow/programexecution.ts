@@ -1,14 +1,15 @@
 import { Program, Operation } from "./program";
 import { LogService } from '~/app/services/logging/log.service';
 
+const LOG = LogService.getLogger('ProgramExecution');
+
 export class ProgramExecution {
 
     private operationIndex : number;
     isStopped : boolean = false;
 
     constructor(
-        private program : Program,
-        private log : LogService) {
+        private program : Program) {
         this.program = program;
         this.operationIndex = 0;
     }
@@ -16,23 +17,23 @@ export class ProgramExecution {
     nextOperation() : Operation {
 
         if (!this.program.operations) {
-            this.log.debug("no operations defined in program");
+            LOG.debug("no operations defined in program");
             return null;
         }
         
         if (this.operationIndex < this.program.operations.length) {
             let result = this.program.operations[this.operationIndex];
-            this.log.debug("nextOperation at index {}: {}", this.operationIndex, result);
+            LOG.debug("nextOperation at index {}: {}", this.operationIndex, result);
             return result;
         } else {
-            this.log.debug("no more operations");
+            LOG.debug("no more operations");
             return null;
         }
     }
 
     next() {
         this.operationIndex = this.operationIndex + 1;
-        this.log.debug("next operationIndex: {}", this.operationIndex);
+        LOG.debug("next operationIndex: {}", this.operationIndex);
     }
 
     stop() {

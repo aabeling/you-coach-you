@@ -3,7 +3,8 @@ import { Couchbase } from 'nativescript-couchbase-plugin';
 import { LogService } from '~/app/services/logging/log.service';
 import { WorkflowService } from '~/app/services/workflow/workflow.service';
 import { Program } from '~/app/services/workflow/program';
-import { TitleCasePipe } from '@angular/common';
+
+const LOG = LogService.getLogger('ProgramManagerService');
 
 /**
  * Provides access to a local storage of programs.
@@ -16,11 +17,10 @@ export class ProgramManagerService {
   database: Couchbase;
 
   constructor(
-    private log : LogService,
     private workflowService : WorkflowService) { 
 
     this.database = new Couchbase('you-coach-you');
-    this.log.debug("created database", this.database);
+    LOG.debug("created database", this.database);
 
     /* TODO remove this: for testing a default program is added */
     let programs = this.database.query({
@@ -29,13 +29,13 @@ export class ProgramManagerService {
     });
     if (programs.length == 0) {
       this.database.createDocument(workflowService.defaultProgram); 
-      this.log.debug("created default program");
+      LOG.debug("created default program");
     }
   }
 
   public storeProgram(program : Program) {
     this.database.createDocument(program);
-    this.log.debug("successfully stored program");
+    LOG.debug("successfully stored program");
   }
 
   /**
@@ -61,6 +61,6 @@ export class ProgramManagerService {
   deleteProgram(id: string) {
 
     this.database.deleteDocument(id);
-    this.log.debug("program deleted: {}", id);
+    LOG.debug("program deleted: {}", id);
   }
 }

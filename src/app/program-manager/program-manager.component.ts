@@ -5,6 +5,8 @@ import { EventData} from "tns-core-modules/data/observable";
 import { confirm } from "tns-core-modules/ui/dialogs";
 import { RouterExtensions } from 'nativescript-angular/router';
 
+const LOG = LogService.getLogger('ProgramManagerComponent');
+
 @Component({
   selector: 'ns-program-manager',
   templateUrl: './program-manager.component.html',
@@ -17,7 +19,6 @@ export class ProgramManagerComponent implements OnInit {
   constructor(
     private programManager : ProgramManagerService,
     private ngZone: NgZone,
-    private log : LogService,
     private router: RouterExtensions) { }
 
   ngOnInit() {
@@ -26,9 +27,9 @@ export class ProgramManagerComponent implements OnInit {
     this.programManager.getPrograms().then(programs => {
       this.ngZone.run( () => {
         this.programs = [];        
-        this.log.debug("loaded programs from local storage");
+        LOG.debug("loaded programs from local storage");
         programs.forEach(program => { 
-          this.log.debug("program: {}", program.name);
+          LOG.debug("program: {}", program.name);
           this.programs.push(program);
         });
       });
@@ -41,7 +42,7 @@ export class ProgramManagerComponent implements OnInit {
     let target = args.object;
     let programId = target.get('programId');
     let programName = target.get('programName');
-    this.log.debug("confirm delete program: {} {}", programId, programName);
+    LOG.debug("confirm delete program: {} {}", programId, programName);
 
     let options = {
       title: "Programm löschen",
@@ -64,13 +65,13 @@ export class ProgramManagerComponent implements OnInit {
     let target = args.object;
     let programId = target.get('programId');
 
-    this.log.debug("select program: {}", programId);
+    LOG.debug("select program: {}", programId);
     this.router.navigate(['program-execution', {id : programId}]);
   }
 
   createProgram() {
 
-    this.log.debug("create program");
+    LOG.debug("create program");
     this.router.navigate(['program-upload']);
   }
 }

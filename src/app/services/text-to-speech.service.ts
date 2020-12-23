@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { TNSTextToSpeech, SpeakOptions } from 'nativescript-texttospeech';
 import { LogService } from '~/app/services/logging/log.service';
 
+const LOG = LogService.getLogger('TextToSpeechService');
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,7 +11,7 @@ export class TextToSpeechService {
 
   private tts : TNSTextToSpeech;
 
-  constructor(private log : LogService) { 
+  constructor() { 
 
     this.tts = new TNSTextToSpeech();
     
@@ -19,7 +21,7 @@ export class TextToSpeechService {
 
   say(text : string, onSayFinished? : Function) {
 
-    this.log.debug("say called with: {}", text);
+    LOG.debug("say called with: {}", text);
 
     let speakOptions: SpeakOptions = {
       text: text,
@@ -32,9 +34,9 @@ export class TextToSpeechService {
 
     let self = this;
     this.tts.speak(speakOptions).then(() => {
-      self.log.debug("speak successful");
+      LOG.debug("speak successful");
     }, (err) => {
-      self.log.debug("speak failed: {}", err);
+      LOG.debug("speak failed: {}", err);
     });
   }
 }

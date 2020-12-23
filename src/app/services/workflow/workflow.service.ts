@@ -4,6 +4,8 @@ import { ProgramExecution } from './programexecution';
 import { TextToSpeechService } from '~/app/services/text-to-speech.service';
 import { LogService } from '~/app/services/logging/log.service';
 
+const LOG = LogService.getLogger('WorkflowService');
+
 /**
  * The WorkflowService handles the execution of the steps of exercises.
  */
@@ -249,13 +251,12 @@ export class WorkflowService {
   public onProgramEnded: Function = undefined;
 
   constructor(
-    private tts : TextToSpeechService,
-    private log : LogService) { }
+    private tts : TextToSpeechService) { }
 
   executeProgram(program : Program) : ProgramExecution {
 
-    this.log.debug("executing program: {}", program.name);
-    let execution : ProgramExecution = new ProgramExecution(program, this.log);
+    LOG.debug("executing program: {}", program.name);
+    let execution : ProgramExecution = new ProgramExecution(program);
 
     this.handleNextOperation(execution);
 
@@ -264,14 +265,14 @@ export class WorkflowService {
 
   stopExecution(execution : ProgramExecution) {
 
-    this.log.debug("stopping execution");
+    LOG.debug("stopping execution");
     execution.stop();
   }
 
   private handleNextOperation(execution : ProgramExecution) {
     
     if (execution.isStopped) {
-      this.log.debug("execution is stopped");
+      LOG.debug("execution is stopped");
       return;
     }
     
@@ -281,13 +282,13 @@ export class WorkflowService {
       if (nextOperation.name == 'say') {
         let sayOperation = <SayOperation> nextOperation;
         this.tts.say(sayOperation.text, function() {
-          self.log.debug("say ended");
+          LOG.debug("say ended");
           self.handleOperationEnded(execution);
         });
       } else if (nextOperation.name == "wait") {
         let waitOperation = <WaitOperation> nextOperation;
         setTimeout(function() {
-          self.log.debug("wait ended");
+          LOG.debug("wait ended");
           self.handleOperationEnded(execution);
         }, waitOperation.delayInSeconds * 1000);
       } else if (nextOperation.name == "display") {
@@ -297,10 +298,10 @@ export class WorkflowService {
           this.handleOperationEnded(execution);
         }
       } else {
-        this.log.debug("unhandled operation: {}", nextOperation);
+        LOG.debug("unhandled operation: {}", nextOperation);
       }
     } else {
-      this.log.debug("program ended");
+      LOG.debug("program ended");
       if (this.onProgramEnded) {
         this.onProgramEnded();
       }
@@ -309,7 +310,7 @@ export class WorkflowService {
 
   private handleOperationEnded(execution : ProgramExecution) {
 
-    this.log.debug("operation ended");
+    LOG.debug("operation ended");
     execution.next();
     this.handleNextOperation(execution);
   }

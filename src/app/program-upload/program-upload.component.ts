@@ -7,6 +7,8 @@ import { YamlParserService } from '../services/upload/yaml-parser.service';
 import { ProgramManagerService } from '../services/program-manager/program-manager.service';
 import { RouterExtensions } from 'nativescript-angular/router';
 
+const LOG = LogService.getLogger('SpeakerExampleComponent');
+
 @Component({
   selector: 'ns-program-upload',
   templateUrl: './program-upload.component.html',
@@ -21,7 +23,6 @@ export class ProgramUploadComponent implements OnInit {
   isBusy : boolean = false;
 
   constructor(
-    private log : LogService,
     private http: HttpClient,
     private yamlParser : YamlParserService,
     private programManager : ProgramManagerService,
@@ -34,7 +35,7 @@ export class ProgramUploadComponent implements OnInit {
 
     let textField = <TextField> event.object;
     let url = textField.text;
-    this.log.debug("upload from url {}", url);
+    LOG.debug("upload from url {}", url);
 
     this.isBusy = true;
     let headers = new HttpHeaders({    
@@ -53,7 +54,7 @@ export class ProgramUploadComponent implements OnInit {
       this.isBusy = false;
       this.router.navigate(['program-manager']);
     }, (error) => {
-      this.log.error("failed to load from url: {}: {}", url, error);
+      LOG.error("failed to load from url: {}: {}", url, error);
       console.log(error);
       // TODO show error in view
     });

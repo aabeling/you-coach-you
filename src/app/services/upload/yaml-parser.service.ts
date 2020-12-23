@@ -3,6 +3,8 @@ import { Program } from '../workflow/program';
 import { LogService } from '~/app/services/logging/log.service';
 const yaml = require('js-yaml')
 
+const LOG = LogService.getLogger('YamlParserService');
+
 /**
  * Parser from programs in yaml format
  */
@@ -11,19 +13,19 @@ const yaml = require('js-yaml')
 })
 export class YamlParserService {
   
-  constructor(private log : LogService) { }
+  constructor() { }
 
   parseProgramYaml(content : string) : Program {
 
     let program = <Program> yaml.safeLoad(content);
-    this.log.debug("successfully parsed yaml file");
+    LOG.debug("successfully parsed yaml file");
 
     return program;
   }
 
   writeProgramYaml(program : Program) : string {
 
-    this.log.debug("writing program {} with {} operations", program.name, program.operations.length);
+    LOG.debug("writing program {} with {} operations", program.name, program.operations.length);
     return yaml.safeDump(program);    
   }
 }
