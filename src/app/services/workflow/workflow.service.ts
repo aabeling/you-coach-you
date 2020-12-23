@@ -12,8 +12,18 @@ import { LogService } from '~/app/services/logging/log.service';
 })
 export class WorkflowService {
 
+  public defaultProgram : Program = {
+    name : "Default for Testing",
+    operations : [
+      new DisplayOperation("Header", "Description"),
+      new SayOperation("Hallo du"),
+      new WaitOperation(3),
+      new SayOperation("Ende")
+    ]
+  };
+
   public program : Program = {
-    name : "Default",
+    name : "Rückentraining für die Lendenwirbelsäule",
     operations : [
       new DisplayOperation("Fertig machen!", ""),
       new SayOperation("Die Übungen gehen in 10 Sekunden los."),

@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
-import { WorkflowService } from '../services/workflow/workflow.service';
-import { ProgramManagerService } from '~/app/services/program-manager/program-manager.service';
-import { EventData} from "tns-core-modules/data/observable";
-import { LogService } from '~/app/services/logging/log.service';
-import { ProgramExecution } from '../services/workflow/programexecution';
-import { DisplayOperation } from '../services/workflow/program';
 import { ActivatedRoute } from '@angular/router';
+import { EventData} from "tns-core-modules/data/observable";
+import { WorkflowService } from '~/app/services/workflow/workflow.service';
+import { ProgramManagerService } from '~/app/services/program-manager/program-manager.service';
+import { LogService } from '~/app/services/logging/log.service';
+import { ProgramExecution } from '~/app/services/workflow/programexecution';
+import { DisplayOperation } from '~/app/services/workflow/program';
+import { YamlParserService } from '~/app/services/upload/yaml-parser.service';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
     private log : LogService,
     private ngZone: NgZone,
     private route: ActivatedRoute,
-    private programManager : ProgramManagerService) { }
+    private programManager : ProgramManagerService,
+    private yamlParser : YamlParserService) { }
 
   ngOnInit() {
 
@@ -64,6 +66,10 @@ export class ProgramExecutionComponent implements OnInit, OnDestroy {
 
     this.log.debug("starting execution");
     this.buttonText = "Stop";
+
+    /* TODO remove this output */
+    let yamlDump = this.yamlParser.writeProgramYaml(program);
+    this.log.debug("yaml dump: {}", yamlDump);
 
     this.execution = this.workflowService.executeProgram(program);
   }

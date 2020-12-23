@@ -1,0 +1,11 @@
+name: Zum Testen
+operations:
+  - name: display
+    header: Header
+    description: Description
+  - name: say
+    text: Hallo du
+  - name: wait
+    delayInSeconds: 3
+  - name: say
+    text: Ende

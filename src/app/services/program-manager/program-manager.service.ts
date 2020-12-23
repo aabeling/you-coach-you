@@ -27,7 +27,7 @@ export class ProgramManagerService {
       where: [{ property: 'name', comparison: 'equalTo', value: 'Default' }]
     });
     if (programs.length == 0) {
-      this.database.createDocument(workflowService.program); 
+      this.database.createDocument(workflowService.defaultProgram); 
       this.log.debug("created default program");
     }
   }
