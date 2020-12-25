@@ -21,11 +21,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      - name: echo version
+        run: echo ${{ steps.get_version.outputs.VERSION }}
       - uses: actions/setup-node@v2
         with:
           node-version: '10'
-
       - name: install nativescript
         run: |
           npm install nativescript@6.5.0
@@ -33,3 +36,9 @@ jobs:
       - name: build for android
         run: |
           node_modules/nativescript/bin/tns build android
+      - name: publish to github packages
+        working-directory: ./platforms/android
+        run: |
+          ./gradlew publish -DVERSION=${{ steps.get_version.outputs.VERSION }} -DGPR_USER=aabeling -DGPR_API_KEY=${{ secrets.GPR_API_KEY }}
+          
+          
