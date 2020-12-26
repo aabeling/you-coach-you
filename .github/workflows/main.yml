@@ -29,23 +29,19 @@ jobs:
       - name: echo version
         run: echo ${{ steps.get_version.outputs.VERSION }}
       - uses: actions/setup-node@v2
-        if: false
         with:
           node-version: '10'
       - name: install nativescript
-        if: false
         run: |
           npm install nativescript@6.5.0
           node_modules/nativescript/bin/tns info
       - name: build for android
-        if: false
         run: |
           node_modules/nativescript/bin/tns build android
       - name: publish to github packages
         env: 
           VERSION: ${{ steps.get_version.outputs.VERSION }}
         run: |
-          echo "https://maven.pkg.github.com/aabeling/you-coach-you/de/banapple/you-coach-you/$VERSION/you-coach-you-$VERSION.apk"
-#          curl -X PUT "https://maven.pkg.github.com/aabeling/you-coach-you/de/banapple/you-coach-you/$VERSION/you-coach-you-$VERSION.apk" \
-#            -H "Authorization: token ${{ secrets.GPR_API_KEY }}" \
-#            --upload-file platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          curl -X PUT "https://maven.pkg.github.com/aabeling/you-coach-you/de/banapple/you-coach-you/$VERSION/you-coach-you-$VERSION.apk" \
+            -H "Authorization: token ${{ secrets.GPR_API_KEY }}" \
+            --upload-file platforms/android/app/build/outputs/apk/debug/app-debug.apk
