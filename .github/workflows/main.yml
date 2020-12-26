@@ -21,19 +21,24 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::$(git describe --abbrev=0 --tags)
       - name: echo version
         run: echo ${{ steps.get_version.outputs.VERSION }}
       - uses: actions/setup-node@v2
+        if: false
         with:
           node-version: '10'
       - name: install nativescript
+        if: false
         run: |
           npm install nativescript@6.5.0
           node_modules/nativescript/bin/tns info
       - name: build for android
+        if: false
         run: |
           node_modules/nativescript/bin/tns build android
       - name: publish to github packages
